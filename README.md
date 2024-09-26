@@ -1,2 +1,2 @@
 # wormhole-DTN
-wormhole
+wormhole/DTN

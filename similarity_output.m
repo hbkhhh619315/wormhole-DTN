@@ -18,7 +18,7 @@ while ~feof(fid)
         % 通过':'分割出源字符和归属字符部分
         parts = strsplit(line, ':');
         source = strtrim(parts{1});
-        destinations = strsplit(strtrim(parts{2}), '；');
+        destinations = strsplit(strtrim(parts{2}), ';');
         
         % 去除每个归属字符的多余空格
         destinations = strtrim(destinations);
@@ -67,7 +67,7 @@ for i = 1:length(keys)
             similarity_j = (num_common / length(destinations_j)) * 100;
             
             % 将结果写入文件
-            fprintf(fid_out, '%s：%d/%d=%.0f%%；%s：%d/%d=%.0f%%\n', ...
+            fprintf(fid_out, '%s:%d/%d=%.0f%%;%s:%d/%d=%.0f%%\n', ...
                 source_i, num_common, length(destinations_i), similarity_i, ...
                 source_j, num_common, length(destinations_j), similarity_j);
             

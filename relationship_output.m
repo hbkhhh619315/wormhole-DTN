@@ -74,9 +74,9 @@ end
 % 获取所有的键，并写入文件
 keys = relationship_map.keys;
 for i = 1:length(keys)
-    fprintf(fid_out, '%s: ', keys{i});
+    fprintf(fid_out, '%s:', keys{i});
     associated_values = relationship_map(keys{i});
-    fprintf(fid_out, '%s', strjoin(associated_values, '；'));
+    fprintf(fid_out, '%s', strjoin(associated_values, ';'));
     fprintf(fid_out, '\n');
 end
 

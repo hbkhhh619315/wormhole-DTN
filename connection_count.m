@@ -32,7 +32,7 @@ while ~feof(fid)
                 
                 % 排序连接对，确保a->b和b->a认为是等价的
                 sorted_pair = sort(pair);
-                key = strcat(sorted_pair{1}, '->', sorted_pair{2});
+                key = strcat(sorted_pair{1}, '<->', sorted_pair{2});
                 
                 % 更新连接对的计数
                 if isKey(connection_map, key)

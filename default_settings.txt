@@ -23,17 +23,20 @@ btInterface.type = SimpleBroadcastInterface
 btInterface.transmitSpeed = 250k
 btInterface.transmitRange = 10
 
-# High speed, long range, interface for group 4
+# High speed, long range, interface for group 5
 
+
+dhighspeedInterface.type = SimpleBroadcastInterface
+dhighspeedInterface.transmitSpeed = 10M
+dhighspeedInterface.transmitRange = 500
 
 mhighspeedInterface.type = SimpleBroadcastInterface
 mhighspeedInterface.transmitSpeed = 10M
 mhighspeedInterface.transmitRange = 800
 
-
 vhighspeedInterface.type = SimpleBroadcastInterface
 vhighspeedInterface.transmitSpeed = 10M
-vhighspeedInterface.transmitRange = 1000
+vhighspeedInterface.transmitRange = 1200
 
 
 uhighspeedInterface.type = SimpleBroadcastInterface
@@ -46,7 +49,7 @@ thighspeedInterface.transmitRange = 1600
 
 
 # Define 6 different node groups
-Scenario.nrofHostGroups = 15
+Scenario.nrofHostGroups = 19
 
 ## Group-specific settings:
 # groupID : Group's identifier. Used as the prefix of host names
@@ -70,7 +73,7 @@ Scenario.nrofHostGroups = 15
 
 # Common settings for all groups
 Group.movementModel = ShortestPathMapBasedMovement
-Group.router = ProphetRouter
+Group.router = EpidemicRouter
 Group.bufferSize = 5M
 Group.waitTime = 0, 120
 # All nodes have the bluetooth interface
@@ -94,7 +97,7 @@ Group2.okMaps = 1
 Group2.speed = 2.7, 13.9
 
 # another group of pedestrians
-Group3.groupID = w
+Group3.groupID = k
 
 # The Tram groups
 
@@ -125,15 +128,14 @@ Group5.interface2 = thighspeedInterface
 Group6.groupID = g
 Group6.bufferSize = 50M
 Group6.movementModel = MapRouteMovement
-Group6.routeFile = data/build111.wkt
+Group6.routeFile = data/build11.wkt
 Group6.routeType = 2
 Group6.waitTime = 10, 30
 Group6.speed = 7, 10
 Group6.nrofHosts = 1
 Group6.nrofInterfaces = 2
 Group6.interface1 = btInterface
-Group6.interface2 = uhighspeedInterface
-
+Group6.interface2 = vhighspeedInterface
 
 Group7.groupID = dd
 Group7.bufferSize = 50M
@@ -146,8 +148,6 @@ Group7.nrofHosts = 3
 Group7.nrofInterfaces = 1
 Group7.interface1 = btInterface
 
-
-
 Group8.groupID = ee
 Group8.bufferSize = 50M
 Group8.movementModel = MapRouteMovement
@@ -158,8 +158,7 @@ Group8.speed = 7, 10
 Group8.nrofHosts = 3
 Group8.nrofInterfaces = 2
 Group8.interface1 = btInterface
-Group8.interface2 = mhighspeedInterface
-
+Group8.interface2 = dhighspeedInterface
 
 Group9.groupID = e
 Group9.bufferSize = 50M
@@ -171,20 +170,19 @@ Group9.speed = 7, 10
 Group9.nrofHosts = 1
 Group9.nrofInterfaces = 2
 Group9.interface1 = btInterface
-Group9.interface2 = uhighspeedInterface
+Group9.interface2 = vhighspeedInterface
 
 Group10.groupID = m
 Group10.bufferSize = 50M
 Group10.movementModel = MapRouteMovement
-Group10.routeFile = data/build3.wkt
+Group10.routeFile = data/build1.wkt
 Group10.routeType = 2
 Group10.waitTime = 10, 30
 Group10.speed = 7, 10
 Group10.nrofHosts = 1
 Group10.nrofInterfaces = 2
 Group10.interface1 = btInterface
-Group10.interface2 = uhighspeedInterface
-
+Group10.interface2 = vhighspeedInterface
 
 Group11.groupID = jj
 Group11.bufferSize = 50M
@@ -196,11 +194,12 @@ Group11.speed = 7, 10
 Group11.nrofHosts = 3
 Group11.nrofInterfaces = 2
 Group11.interface1 = btInterface
-Group11.interface2 = mhighspeedInterface
+Group11.interface2 = dhighspeedInterface
 
 Group12.groupID = j
 Group12.bufferSize = 50M
 Group12.movementModel = MapRouteMovement
+#Group12.routeFile = data/build111.wkt
 Group12.routeFile = data/copy_roads.wkt
 Group12.routeType = 2
 Group12.waitTime = 10, 30
@@ -213,28 +212,26 @@ Group12.interface2 = uhighspeedInterface
 Group13.groupID = mm
 Group13.bufferSize = 50M
 Group13.movementModel = MapRouteMovement
-Group13.routeFile = data/build3.wkt
+Group13.routeFile = data/build1.wkt
 Group13.routeType = 2
 Group13.waitTime = 10, 30
 Group13.speed = 7, 10
 Group13.nrofHosts = 3
 Group13.nrofInterfaces = 2
 Group13.interface1 = btInterface
-Group13.interface2 = mhighspeedInterface
-
-
+Group13.interface2 = dhighspeedInterface
 
 Group14.groupID = gg
 Group14.bufferSize = 50M
 Group14.movementModel = MapRouteMovement
-Group14.routeFile = data/build999.wkt
+Group14.routeFile = data/build11.wkt
 Group14.routeType = 2
 Group14.waitTime = 10, 30
 Group14.speed = 7, 10
 Group14.nrofHosts = 3
 Group14.nrofInterfaces = 2
 Group14.interface1 = btInterface
-Group14.interface2 = mhighspeedInterface
+Group14.interface2 = dhighspeedInterface
 
 Group15.groupID = ff
 Group15.bufferSize = 50M
@@ -246,22 +243,55 @@ Group15.speed = 7, 10
 Group15.nrofHosts = 3
 Group15.nrofInterfaces = 2
 Group15.interface1 = btInterface
-Group15.interface2 = vhighspeedInterface
+Group15.interface2 = dhighspeedInterface
 
-#Group16.groupID = w
-#Group16.bufferSize = 50M
-#Group16.movementModel = MapRouteMovement
-#Group16.routeFile = data/build33.wkt
-#Group16.routeType = 2
-#Group16.waitTime = 10, 30
-#Group16.speed = 7, 10
-#Group16.nrofHosts = 1
-#Group16.nrofInterfaces = 2
-#Group16.interface1 = btInterface
-#Group16.interface2 = vhighspeedInterface
+Group16.groupID = w
+Group16.bufferSize = 50M
+Group16.movementModel = MapRouteMovement
+Group16.routeFile = data/build3.wkt
+Group16.routeType = 2
+Group16.waitTime = 10, 30
+Group16.speed = 7, 10
+Group16.nrofHosts = 1
+Group16.nrofInterfaces = 2
+Group16.interface1 = btInterface
+Group16.interface2 = vhighspeedInterface
 
+Group17.groupID = ww
+Group17.bufferSize = 50M
+Group17.movementModel = MapRouteMovement
+Group17.routeFile = data/build3.wkt
+Group17.routeType = 2
+Group17.waitTime = 10, 30
+Group17.speed = 7, 10
+Group17.nrofHosts = 3
+Group17.nrofInterfaces = 2
+Group17.interface1 = btInterface
+Group17.interface2 = dhighspeedInterface
 
+Group18.groupID = t
+Group18.bufferSize = 50M
+Group18.movementModel = MapRouteMovement
+Group18.routeFile = data/build999.wkt
+Group18.routeType = 2
+Group18.waitTime = 10, 30
+Group18.speed = 7, 10
+Group18.nrofHosts = 1
+Group18.nrofInterfaces = 2
+Group18.interface1 = btInterface
+Group18.interface2 = uhighspeedInterface
 
+Group19.groupID = tt
+Group19.bufferSize = 50M
+Group19.movementModel = MapRouteMovement
+Group19.routeFile = data/build999.wkt
+Group19.routeType = 2
+Group19.waitTime = 10, 30
+Group19.speed = 7, 10
+Group19.nrofHosts = 3
+Group19.nrofInterfaces = 2
+Group19.interface1 = btInterface
+Group19.interface2 = dhighspeedInterface
 
 ## Message creation parameters 
 # How many event generators
@@ -274,7 +304,7 @@ Events1.interval = 25,35
 # Message sizes (500kB - 1MB)
 Events1.size = 500k,1M
 # range of message source/destination addresses
-Events1.hosts = 0,53
+Events1.hosts = 0,61
 # Message ID prefix
 Events1.prefix = M
 

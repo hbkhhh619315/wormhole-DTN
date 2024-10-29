@@ -49,7 +49,7 @@ thighspeedInterface.transmitRange = 1600
 
 
 # Define 6 different node groups
-Scenario.nrofHostGroups = 19
+Scenario.nrofHostGroups = 23
 
 ## Group-specific settings:
 # groupID : Group's identifier. Used as the prefix of host names
@@ -84,7 +84,7 @@ Group.speed = 0.5, 1.5
 # Message TTL of 300 minutes (5 hours)
 Group.msgTtl = 300
 
-Group.nrofHosts = 10
+Group.nrofHosts = 6
 
 # group1 (pedestrians) specific settings
 Group1.groupID = p
@@ -187,7 +187,7 @@ Group10.interface2 = vhighspeedInterface
 Group11.groupID = jj
 Group11.bufferSize = 50M
 Group11.movementModel = MapRouteMovement
-Group11.routeFile = data/copy_roads.wkt
+Group11.routeFile = data/build111.wkt
 Group11.routeType = 2
 Group11.waitTime = 10, 30
 Group11.speed = 7, 10
@@ -199,8 +199,8 @@ Group11.interface2 = dhighspeedInterface
 Group12.groupID = j
 Group12.bufferSize = 50M
 Group12.movementModel = MapRouteMovement
-#Group12.routeFile = data/build111.wkt
-Group12.routeFile = data/copy_roads.wkt
+Group12.routeFile = data/build111.wkt
+#Group12.routeFile = data/copy_roads.wkt
 Group12.routeType = 2
 Group12.waitTime = 10, 30
 Group12.speed = 7, 10
@@ -293,6 +293,57 @@ Group19.nrofInterfaces = 2
 Group19.interface1 = btInterface
 Group19.interface2 = dhighspeedInterface
 
+Group20.groupID = aa
+Group20.bufferSize = 50M
+Group20.movementModel = MapRouteMovement
+Group20.routeFile = data/copy_roads.wkt
+Group20.routeType = 2
+Group20.waitTime = 10, 30
+Group20.speed = 7, 10
+Group20.nrofHosts = 3
+Group20.nrofInterfaces = 2
+Group20.interface1 = btInterface
+Group20.interface2 = dhighspeedInterface
+
+
+Group21.groupID = u
+Group21.bufferSize = 50M
+Group21.movementModel = MapRouteMovement
+Group21.routeFile = data/build33.wkt
+Group21.routeType = 2
+Group21.waitTime = 10, 30
+Group21.speed = 7, 10
+Group21.nrofHosts = 1
+Group21.nrofInterfaces = 2
+Group21.interface1 = btInterface
+Group21.interface2 = mhighspeedInterface
+
+Group22.groupID = a
+Group22.bufferSize = 50M
+Group22.movementModel = MapRouteMovement
+Group22.routeFile = data/copy_roads.wkt
+Group22.routeType = 2
+Group22.waitTime = 10, 30
+Group22.speed = 7, 10
+Group22.nrofHosts = 1
+Group22.nrofInterfaces = 2
+Group22.interface1 = btInterface
+Group22.interface2 = mhighspeedInterface
+
+
+Group23.groupID = uu
+Group23.bufferSize = 50M
+Group23.movementModel = MapRouteMovement
+Group23.routeFile = data/build33.wkt
+Group23.routeType = 2
+Group23.waitTime = 10, 30
+Group23.speed = 7, 10
+Group23.nrofHosts = 3
+Group23.nrofInterfaces = 2
+Group23.interface1 = btInterface
+Group23.interface2 = dhighspeedInterface
+
+
 ## Message creation parameters 
 # How many event generators
 Events.nrof = 1
@@ -304,7 +355,7 @@ Events1.interval = 25,35
 # Message sizes (500kB - 1MB)
 Events1.size = 500k,1M
 # range of message source/destination addresses
-Events1.hosts = 0,61
+Events1.hosts = 0,57
 # Message ID prefix
 Events1.prefix = M
 

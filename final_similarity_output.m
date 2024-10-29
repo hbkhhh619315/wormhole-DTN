@@ -39,13 +39,24 @@ fclose(fid_abc);
 % 计算平均值
 average_value = mean(values);
 
+% 使用 IQR 方法找出极端值
+Q1 = prctile(values, 25);
+Q3 = prctile(values, 75);
+IQR_value = Q3 - Q1;
+lower_limit = Q1 - 1.5 * IQR_value;
+upper_limit = Q3 + 1.5 * IQR_value;
+
+%upper_limit = prctile(values, 95);
+
+
 % 筛选出大于等于平均值的行
 filtered_lines = {};
 for i = 1:length(lines)
-    if values(i) >= average_value
+    if values(i) >= upper_limit
         filtered_lines{end+1} = lines{i};
     end
 end
+
 
 % 打开并读取文件 def.txt
 filename_def = 'relationship_output.txt';

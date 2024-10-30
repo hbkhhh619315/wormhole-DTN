@@ -73,7 +73,7 @@ Scenario.nrofHostGroups = 23
 
 # Common settings for all groups
 Group.movementModel = ShortestPathMapBasedMovement
-Group.router = EpidemicRouter
+Group.router = FirstContactRouter
 Group.bufferSize = 5M
 Group.waitTime = 0, 120
 # All nodes have the bluetooth interface
@@ -84,7 +84,7 @@ Group.speed = 0.5, 1.5
 # Message TTL of 300 minutes (5 hours)
 Group.msgTtl = 300
 
-Group.nrofHosts = 6
+Group.nrofHosts = 12
 
 # group1 (pedestrians) specific settings
 Group1.groupID = p
@@ -140,13 +140,15 @@ Group6.interface2 = vhighspeedInterface
 Group7.groupID = dd
 Group7.bufferSize = 50M
 Group7.movementModel = MapRouteMovement
-Group7.routeFile = data/tram10.wkt
+#Group7.routeFile = data/tram10.wkt
+Group7.routeFile = data/build2.wkt
 Group7.routeType = 2
 Group7.waitTime = 10, 30
 Group7.speed = 7, 10
 Group7.nrofHosts = 3
-Group7.nrofInterfaces = 1
+Group7.nrofInterfaces = 2
 Group7.interface1 = btInterface
+Group7.interface2 = dhighspeedInterface
 
 Group8.groupID = ee
 Group8.bufferSize = 50M
@@ -355,7 +357,7 @@ Events1.interval = 25,35
 # Message sizes (500kB - 1MB)
 Events1.size = 500k,1M
 # range of message source/destination addresses
-Events1.hosts = 0,57
+Events1.hosts = 0,75
 # Message ID prefix
 Events1.prefix = M
 
@@ -394,6 +396,7 @@ Report.report6 = MessageGraphvizReport
 
 ## Default settings for some routers settings
 ProphetRouter.secondsInTimeUnit = 30
+ProphetV2Router.secondsInTimeUnit = 30
 SprayAndWaitRouter.nrofCopies = 6
 SprayAndWaitRouter.binaryMode = true
 

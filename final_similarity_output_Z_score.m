@@ -28,29 +28,82 @@ while ~feof(fid_abc)
         value = str2double(value_str);
         
         % 将行和数值存储
-        lines{end+1} = line;
-        values(end+1) = value;
+        if value > 1
+            lines{end+1} = line;
+            values(end+1) = value;
+
+        end
     end
 end
 
 % 关闭文件 abc.txt
 fclose(fid_abc);
 
-% 计算平均值和标准差
-average_value = mean(values);
-std_dev = std(values);
+% % 计算平均值和标准差
+% average_value = mean(values);
+% std_dev = std(values);
+% 
+% % 使用 Z-Score 方法找出极端值
+% threshold = 2; % 设置 Z-Score 阈值
+% z_scores = (values - average_value) / std_dev;
+% 
+% % 筛选出 |Z| 大于 3 的极端值
+% filtered_lines = {};
+% for i = 1:length(lines)
+%     if abs(z_scores(i)) > threshold
+%         filtered_lines{end+1} = lines{i};
+%     end
+% end
 
-% 使用 Z-Score 方法找出极端值
-threshold = 2; % 设置 Z-Score 阈值
-z_scores = (values - average_value) / std_dev;
 
-% 筛选出 |Z| 大于 3 的极端值
+% % 计算中位数和 MAD（中位数绝对偏差）
+% median_value = median(values);
+% MAD_value = median(abs(values - median_value));
+% 
+% if MAD_value == 0
+%     MAD_value = 1e-9;  % 避免除零
+% end
+% 
+% % 计算 Modified Z-Score
+% MZ_Scores = 0.6745 * (values - median_value) / MAD_value;
+% 
+% % 设定阈值（一般 3.5 作为异常值阈值）
+% threshold_MZ = 2;
+% 
+% % 筛选出异常值的行（使用 Modified Z-Score 替换 IQR）
+% filtered_lines = {};
+% for i = 1:length(lines)
+%     if abs(MZ_Scores(i)) >= threshold_MZ
+%         filtered_lines{end+1} = lines{i};
+%     end
+% end
+
+% 取对数，避免大数值主导分布
+log_values = log(values + 1);  % 避免 log(0) 错误
+
+% 计算均值和标准差
+log_median = median(log_values);
+log_MAD = median(abs(log_values - log_median));
+
+% 避免 MAD = 0 导致除零错误
+if log_MAD == 0
+    log_MAD = 1e-9;
+end
+
+% 计算 对数 Z-Score
+log_Z_Scores = (log_values - log_median) / log_MAD;
+
+% 设定阈值（一般 3 作为异常值阈值）
+threshold_log_Z = 2;
+
+% 筛选出异常值的行（使用 对数 Z-Score 替换 IQR）
 filtered_lines = {};
 for i = 1:length(lines)
-    if abs(z_scores(i)) > threshold
+    if abs(log_Z_Scores(i)) >= threshold_log_Z
         filtered_lines{end+1} = lines{i};
     end
 end
+
 
 % 打开并读取文件 def.txt
 filename_def = 'relationship_output.txt';
